@@ -1,7 +1,9 @@
 require "zip"
 
 module Crexcel
-  # TODO Write doc for Workbook
+  # The Workbook Class is the main class of Crexcel
+  # It create the file which will contains the worksheets.
+  # Don't forget to call the close method in order to generate your xlsx file!
   class Workbook
     @sheets : Array(Worksheet)
     @directory : String
@@ -109,8 +111,14 @@ module Crexcel
             xml.element("sheetData") do
               xml.element("row", r: "1", spans: "1:1") do
                 datas.each do |data|
-                  xml.element("c", r: data["pos"], t: data["type"]) do
-                    xml.element("v") { xml.text data["value"] }
+                  if data["type"] == ""
+                    xml.element("c", r: data["pos"]) do
+                      xml.element("v") { xml.text data["value"] }
+                    end
+                  else
+                    xml.element("c", r: data["pos"], t: data["type"]) do
+                      xml.element("v") { xml.text data["value"] }
+                    end
                   end
                 end
               end
