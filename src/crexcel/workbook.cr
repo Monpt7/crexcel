@@ -55,7 +55,7 @@ module Crexcel
     private def generate_xlsx
       name = @name
       name = name+".xslx" if name.split('.')[-1] != "xlsx"
-      File.open(@tmpdir+name, "w") do |file|
+      File.open(name, "w") do |file|
         Zip::Writer.open(file) do |zip|
           zip.add("_rels/.rels", File.open("#{@directory}_rels/.rels"))
           zip.add("docProps/app.xml", File.open("#{@directory}docProps/app.xml"))
@@ -72,7 +72,7 @@ module Crexcel
           zip.add("[Content_Types].xml", File.open("#{@directory}[Content_Types].xml"))
         end
       end
-      puts "\n\nCreated #{@tmpdir+name}"
+      puts "\n\nCreated #{name}"
     end
 
     private def write_workbook_xml
@@ -98,7 +98,8 @@ module Crexcel
 
     private def write_worksheets_xml
       @sheets.each_with_index do |sheet, i|
-        datas = sheet.get_datas
+        datas = sheet.get_tidy_datas
+        p sheet.get_tidy_datas
         i += 1
         string = XML.build(encoding: "UTF-8") do |xml|
           xml.element("worksheet", xmlns: "http://schemas.openxmlformats.org/spreadsheetml/2006/main",
@@ -109,15 +110,17 @@ module Crexcel
             end
             xml.element("sheetFormatPr", defaultRowHeight: "15")
             xml.element("sheetData") do
-              xml.element("row", r: "1", spans: "1:1") do
-                datas.each do |data|
-                  if data["type"] == ""
-                    xml.element("c", r: data["pos"]) do
-                      xml.element("v") { xml.text data["value"] }
-                    end
-                  else
-                    xml.element("c", r: data["pos"], t: data["type"]) do
-                      xml.element("v") { xml.text data["value"] }
+              datas.each do |key, value|
+                xml.element("row", r: key.to_s, spans: "1:1") do
+                  value.each do |data|
+                    if data["type"] == ""
+                      xml.element("c", r: data["pos"]) do
+                        xml.element("v") { xml.text data["value"] }
+                      end
+                    else
+                      xml.element("c", r: data["pos"], t: data["type"]) do
+                        xml.element("v") { xml.text data["value"] }
+                      end
                     end
                   end
                 end
