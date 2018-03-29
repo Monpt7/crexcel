@@ -9,8 +9,8 @@ module Crexcel
       @name = name
     end
 
-    def write(position : String, str : Int64 | String )
-      if typeof(str) == String
+    def write(position : String, str : Int32 | Int64 | String )
+      if str.is_a? String
         value = Crexcel::SharedString.new(str).index.to_s
         type = "s"
       else
@@ -19,7 +19,6 @@ module Crexcel
       end
       @datas << {pos: position, value: value, type: type}
     end
-
 
     def get_datas
       @datas

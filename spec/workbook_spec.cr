@@ -36,7 +36,7 @@ describe Crexcel do
   end
 
   it "write a cell" do
-    worksheet1.write("A1", "Salut?!")
+    worksheet1.write("A1", 123)
   end
 
   workbook.close
