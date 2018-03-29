@@ -9,7 +9,7 @@ module Crexcel
       @name = name
     end
 
-    def write(position : String, str : Int32 | Int64 | String )
+    def write(position : String, str : Int32 | Int64 | Float64 | String )
       if str.is_a? String
         value = Crexcel::SharedString.new(str).index.to_s
         type = "s"
@@ -22,6 +22,32 @@ module Crexcel
 
     def get_datas
       @datas
+    end
+
+    def get_tidy_datas
+      tidy_datas = Hash(Int32, Array(NamedTuple(pos: String, value: String, type: String))).new
+      sorted_datas = @datas.sort {|a,b|
+        tmpa = /[A-Z]*([\d]*)/.match(a["pos"])
+        tmpb = /[A-Z]*([\d]*)/.match(b["pos"])
+        if tmpa.not_nil![1].to_i > tmpb.not_nil![1].to_i
+          1
+        elsif tmpa.not_nil![1].to_i == tmpb.not_nil![1].to_i
+          if tmpa.not_nil![0] > tmpb.not_nil![0]
+            1
+          else
+            -1
+          end
+        else
+          -1
+        end
+      }
+      sorted_datas.each do |data|
+        row = /[A-Z]*([\d]*)/.match(data["pos"])
+        row = row.not_nil![1].to_i
+        tidy_datas[row] = Array(NamedTuple(pos: String, value: String, type: String)).new unless tidy_datas.has_key?(row)
+        tidy_datas[row] << data
+      end
+      tidy_datas
     end
 
   end

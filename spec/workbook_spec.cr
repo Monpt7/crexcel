@@ -35,8 +35,23 @@ describe Crexcel do
     Crexcel::SharedString.get_strings.size.should eq(2)
   end
 
-  it "write a cell" do
+  it "write an int in cell" do
     worksheet1.write("A1", 123)
+    worksheet1.get_datas.last["value"].should eq("123")
+    worksheet1.get_datas.last["type"].should eq("")
+    worksheet1.write("B1", 321)
+  end
+
+  it "write a float in cell" do
+    worksheet1.write("A3", 2.2973)
+    worksheet1.get_datas.last["value"].should eq("2.2973")
+    worksheet1.get_datas.last["type"].should eq("")
+  end
+
+  it "write a string in cell" do
+    worksheet1.write("A2", "hello")
+    Crexcel::SharedString.get_strings.size.should eq(3)
+    worksheet1.get_datas.last["type"].should eq("s")
   end
 
   workbook.close
