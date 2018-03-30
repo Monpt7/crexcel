@@ -1,5 +1,5 @@
 module Crexcel
-  # TODO Write doc for SharedStrings
+  # :nodoc:
   class SharedString
     @@strings = Array(String).new
     @@count = 0
