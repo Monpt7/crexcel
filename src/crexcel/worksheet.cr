@@ -1,3 +1,4 @@
+require "../helpers/position_helper.cr"
 module Crexcel
   # TODO Write doc for Worksheet class
   class Worksheet
@@ -18,6 +19,10 @@ module Crexcel
         type = ""
       end
       @datas << {pos: position, value: value, type: type}
+    end
+
+    def write(pos_x : Int32 | Int64, pos_y : Int32 | Int64, str : Int32 | Int64 | Float64 | String )
+      write(int_pos_to_char(pos_x, pos_y), str)
     end
 
     def get_datas

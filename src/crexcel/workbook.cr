@@ -99,7 +99,6 @@ module Crexcel
     private def write_worksheets_xml
       @sheets.each_with_index do |sheet, i|
         datas = sheet.get_tidy_datas
-        p sheet.get_tidy_datas
         i += 1
         string = XML.build(encoding: "UTF-8") do |xml|
           xml.element("worksheet", xmlns: "http://schemas.openxmlformats.org/spreadsheetml/2006/main",

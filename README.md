@@ -1,6 +1,10 @@
 # crexcel
 
+[![Build Status](https://travis-ci.org/Monpt7/crexcel.svg?branch=master)](https://travis-ci.org/Monpt7/crexcel)
+
 crexcel is a crystal library to generate XLSX files almost like this [python module](https://github.com/jmcnamara/XlsxWriter)
+
+**Important note :** this library only works with the master branch of Crystal for the moment. 0.24.2 version doesn't work but I hope 0.24.3 will!
 
 ## Installation
 

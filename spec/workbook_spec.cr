@@ -43,7 +43,7 @@ describe Crexcel do
   end
 
   it "write a float in cell" do
-    worksheet1.write("A3", 2.2973)
+    worksheet1.write(0, 2, 2.2973)
     worksheet1.get_datas.last["value"].should eq("2.2973")
     worksheet1.get_datas.last["type"].should eq("")
   end
