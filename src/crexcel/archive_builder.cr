@@ -1,3 +1,5 @@
+require "xml"
+
 module Crexcel
   # :nodoc:
   class ArchiveBuilder
