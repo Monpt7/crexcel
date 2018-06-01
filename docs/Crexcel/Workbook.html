@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta id="repository-name" content="github.com/Monpt7/crexcel">
+  <link href="../css/style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="../js/doc.js"></script>
+  <title>Crexcel::Workbook - github.com/Monpt7/crexcel</title>
+</head>
+<body>
+
+<div id="types-list">
+  <div id="search-box">
+    <input type="search" id="search-input" placeholder="Search...">
+  </div>
+
+  <ul>
+    <li><a href="../index.html">README</a></li>
+  </ul>
+
+  <ul>
+  
+  <li class="parent open current" data-id="github.com/Monpt7/crexcel/Crexcel" data-name="crexcel">
+      <a href="../Crexcel.html">Crexcel</a>
+      
+        <ul>
+  
+  <li class=" current" data-id="github.com/Monpt7/crexcel/Crexcel/Workbook" data-name="crexcel::workbook">
+      <a href="../Crexcel/Workbook.html">Workbook</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Monpt7/crexcel/Crexcel/Worksheet" data-name="crexcel::worksheet">
+      <a href="../Crexcel/Worksheet.html">Worksheet</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+</div>
+
+<div id="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Crexcel::Workbook
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Crexcel/Workbook.html">Crexcel::Workbook</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+  <h2>Overview</h2>
+
+  <p>The Workbook Class is the main class of Crexcel.
+It create the file which will contains the worksheets.</p>
+
+<p><span class="flag purple">NOTE</span>  Don't forget to call the close method in order to generate your xlsx file!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>Defined in:</h2>
+  
+    
+      <a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/workbook.cr#L7" target="_blank">crexcel/workbook.cr</a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>Constructors</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28name%3AString%29-class-method" class="signature"><strong>.new</strong>(name : String)</a>
+        
+          <div class="summary"><p>The new method let you create a workbook, you only need one per file you want to generate.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+  <h2>Instance Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#add_worksheet%28name%3AString%29-instance-method" class="signature"><strong>#add_worksheet</strong>(name : String)</a>
+        
+          <div class="summary"><p>Call this to add a worksheet to the workbook with a name.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#add_worksheet-instance-method" class="signature"><strong>#add_worksheet</strong></a>
+        
+          <div class="summary"><p>Call this to add a worksheet to the workbook without giving it a name.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#close-instance-method" class="signature"><strong>#close</strong></a>
+        
+          <div class="summary"><p>This function close the workbook and generate a xlsx file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#name%3AString-instance-method" class="signature"><strong>#name</strong> : String</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>Constructor Detail</h2>
+  
+    <div class="entry-detail" id="new(name:String)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(name : String)
+
+        <a class="method-permalink" href="#new%28name%3AString%29-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>The new method let you create a workbook, you only need one per file you want to generate.</p>
+
+<p>You must give a name to it :</p>
+
+<pre><code>my_workbook <span class="o">=</span> <span class="t">Workbook</span>.<span class="k">new</span>(<span class="s">&quot;thing.xlsx&quot;</span>)</code></pre>
+
+<p><span class="flag purple">NOTE</span>  You are not forced to give the extension, if you type <code>Workbook.new("thing")</code>
+ it will still create a 'thing.xlsx' file.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/workbook.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+
+  <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail" id="add_worksheet(name:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>add_worksheet</strong>(name : String)
+
+        <a class="method-permalink" href="#add_worksheet%28name%3AString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Call this to add a worksheet to the workbook with a name.</p>
+
+<p>It returns a Worksheet object</p>
+
+<pre><code>workbook <span class="o">=</span> <span class="t">Workbook</span>.<span class="k">new</span>(<span class="s">&quot;thing.xlsx&quot;</span>)
+first_worksheet <span class="o">=</span> workbook.add_worksheet(<span class="s">&quot;test&quot;</span>)</code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/workbook.cr#L56" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="add_worksheet-instance-method">
+      <div class="signature">
+        
+        def <strong>add_worksheet</strong>
+
+        <a class="method-permalink" href="#add_worksheet-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Call this to add a worksheet to the workbook without giving it a name.</p>
+
+<p>It returns a Worksheet object</p>
+
+<pre><code>workbook <span class="o">=</span> <span class="t">Workbook</span>.<span class="k">new</span>(<span class="s">&quot;thing.xlsx&quot;</span>)
+first_worksheet <span class="o">=</span> workbook.add_worksheet</code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/workbook.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="close-instance-method">
+      <div class="signature">
+        
+        def <strong>close</strong>
+
+        <a class="method-permalink" href="#close-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>This function close the workbook and generate a xlsx file.
+You <strong>MUST</strong> call this function at the end of you script for each Workbook created.
+If you don't, this <strong>WILL NOT</strong> generate the xlsx file.</p>
+
+<p><span class="flag green">OPTIMIZE</span>  In the future, not closing a Workbook will raise an error
+ instead of silently not generate the file.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/workbook.cr#L67" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="name:String-instance-method">
+      <div class="signature">
+        
+        def <strong>name</strong> : String
+
+        <a class="method-permalink" href="#name%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/workbook.cr#L12" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>

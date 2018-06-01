@@ -1,5 +1,5 @@
 module Crexcel
-  # TODO Write doc for SharedStrings
+  # :nodoc:
   class SharedString
     @@strings = Array(String).new
     @@count = 0
@@ -7,9 +7,14 @@ module Crexcel
 
 
     def initialize(string : String)
-      @index = @@strings.size.to_i
-      @@strings << string unless @@strings.includes?(string)
-      @@count += 1
+      unless @@strings.includes?(string)
+        @index = @@strings.size.to_i
+        @@strings << string
+        @@count += 1
+      else
+        ind = @@strings.index(string)
+        @index = ind.nil? ? @@strings.size.to_i : ind
+      end
     end
 
     def self.get_strings

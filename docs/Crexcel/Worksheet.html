@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta id="repository-name" content="github.com/Monpt7/crexcel">
+  <link href="../css/style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="../js/doc.js"></script>
+  <title>Crexcel::Worksheet - github.com/Monpt7/crexcel</title>
+</head>
+<body>
+
+<div id="types-list">
+  <div id="search-box">
+    <input type="search" id="search-input" placeholder="Search...">
+  </div>
+
+  <ul>
+    <li><a href="../index.html">README</a></li>
+  </ul>
+
+  <ul>
+  
+  <li class="parent open current" data-id="github.com/Monpt7/crexcel/Crexcel" data-name="crexcel">
+      <a href="../Crexcel.html">Crexcel</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Monpt7/crexcel/Crexcel/Workbook" data-name="crexcel::workbook">
+      <a href="../Crexcel/Workbook.html">Workbook</a>
+      
+    </li>
+  
+  <li class=" current" data-id="github.com/Monpt7/crexcel/Crexcel/Worksheet" data-name="crexcel::worksheet">
+      <a href="../Crexcel/Worksheet.html">Worksheet</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+</div>
+
+<div id="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Crexcel::Worksheet
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Crexcel/Worksheet.html">Crexcel::Worksheet</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+  <h2>Overview</h2>
+
+  <p><span class="flag orange">TODO</span>  Write doc for Worksheet class</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>Defined in:</h2>
+  
+    
+      <a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/worksheet.cr#L4" target="_blank">crexcel/worksheet.cr</a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>Constant Summary</h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="SUPPORTED_TYPES">
+        <strong>SUPPORTED_TYPES</strong> = <code>{<span class="s">&quot;string&quot;</span> => <span class="s">&quot;s&quot;</span>, <span class="s">&quot;int&quot;</span> => <span class="s">&quot;n&quot;</span>}</code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+
+
+
+
+  <h2>Instance Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#name%3AString-instance-method" class="signature"><strong>#name</strong> : String</a>
+        
+          <div class="summary"><p>Get name of the worksheet</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#write%28position%3AString%2Cstr%3AInt32%7CInt64%7CFloat64%7CString%2Ctype_req%3AString%29-instance-method" class="signature"><strong>#write</strong>(position : String, str : Int32 | Int64 | Float64 | String, type_req : String)</a>
+        
+          <div class="summary"><p>Write data in the specified worksheet at specific location You can precise the type you want</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#write%28pos_x%3AInt32%7CInt64%2Cpos_y%3AInt32%7CInt64%2Cstr%3AInt32%7CInt64%7CFloat64%7CString%2Ctype_req%3D%26quot%3B%26quot%3B%29-instance-method" class="signature"><strong>#write</strong>(pos_x : Int32 | Int64, pos_y : Int32 | Int64, str : Int32 | Int64 | Float64 | String, type_req = <span class="s">&quot;&quot;</span>)</a>
+        
+          <div class="summary"><p>Same as other write methods, but location is precised differently <code></code>` first_worksheet = workbook.add_worksheet first_worksheet.write(0, 0, "hello") # Will write "hello" in A1 cell <code></code>`</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#write%28position%3AString%2Cstr%3AInt32%7CInt64%7CFloat64%7CString%29-instance-method" class="signature"><strong>#write</strong>(position : String, str : Int32 | Int64 | Float64 | String)</a>
+        
+          <div class="summary"><p>Write data in the specified worksheet at specific location</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+
+
+
+
+  <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail" id="name:String-instance-method">
+      <div class="signature">
+        
+        def <strong>name</strong> : String
+
+        <a class="method-permalink" href="#name%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Get name of the worksheet</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/worksheet.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="write(position:String,str:Int32|Int64|Float64|String,type_req:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>write</strong>(position : String, str : Int32 | Int64 | Float64 | String, type_req : String)
+
+        <a class="method-permalink" href="#write%28position%3AString%2Cstr%3AInt32%7CInt64%7CFloat64%7CString%2Ctype_req%3AString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Write data in the specified worksheet at specific location
+You can precise the type you want</p>
+
+<pre><code>first_worksheet <span class="o">=</span> workbook.add_worksheet
+first_worksheet.write(<span class="s">&quot;A1&quot;</span>, <span class="s">&quot;1337&quot;</span>, <span class="s">&quot;int&quot;</span>) <span class="c"># Will write 1337 as a number</span></code></pre>
+
+<p><strong>Available types are for now :</strong> string, int</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/worksheet.cr#L44" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="write(pos_x:Int32|Int64,pos_y:Int32|Int64,str:Int32|Int64|Float64|String,type_req=&amp;quot;&amp;quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>write</strong>(pos_x : Int32 | Int64, pos_y : Int32 | Int64, str : Int32 | Int64 | Float64 | String, type_req = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#write%28pos_x%3AInt32%7CInt64%2Cpos_y%3AInt32%7CInt64%2Cstr%3AInt32%7CInt64%7CFloat64%7CString%2Ctype_req%3D%26quot%3B%26quot%3B%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Same as other write methods, but location is precised differently</p>
+
+<pre><code>first_worksheet <span class="o">=</span> workbook.add_worksheet
+first_worksheet.write(<span class="n">0</span>, <span class="n">0</span>, <span class="s">&quot;hello&quot;</span>) <span class="c"># Will write &quot;hello&quot; in A1 cell</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/worksheet.cr#L56" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="write(position:String,str:Int32|Int64|Float64|String)-instance-method">
+      <div class="signature">
+        
+        def <strong>write</strong>(position : String, str : Int32 | Int64 | Float64 | String)
+
+        <a class="method-permalink" href="#write%28position%3AString%2Cstr%3AInt32%7CInt64%7CFloat64%7CString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Write data in the specified worksheet at specific location</p>
+
+<pre><code>first_worksheet <span class="o">=</span> workbook.add_worksheet
+first_worksheet.write(<span class="s">&quot;A1&quot;</span>, <span class="s">&quot;Hello world!&quot;</span>)
+first_worksheet.write(<span class="s">&quot;A2&quot;</span>, <span class="s">&quot;1337&quot;</span>) <span class="c"># Will write 1337 as a string</span>
+first_worksheet.write(<span class="s">&quot;B1&quot;</span>, <span class="n">1337</span>) <span class="c"># Will write 1337 as a number</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/worksheet.cr#L25" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>

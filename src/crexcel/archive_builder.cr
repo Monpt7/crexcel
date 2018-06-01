@@ -1,5 +1,7 @@
+require "xml"
+
 module Crexcel
-  # TODO Write doc for ContentType
+  # :nodoc:
   class ArchiveBuilder
     @rootdir : String
 
