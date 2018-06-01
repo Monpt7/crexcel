@@ -61,11 +61,13 @@ module Crexcel
       end
     end
 
-    private def get_datas
+    # :nodoc:
+    def get_datas
       @datas
     end
 
-    private def get_tidy_datas
+    # :nodoc:
+    def get_tidy_datas
       tidy_datas = Hash(Int32, Array(NamedTuple(pos: String, value: String, type: String))).new
       sorted_datas = @datas.sort {|a,b|
         tmpa = /[A-Z]*([\d]*)/.match(a["pos"])
