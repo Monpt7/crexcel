@@ -54,6 +54,18 @@ describe Crexcel do
     worksheet1.get_datas.last["type"].should eq("s")
   end
 
+  it "write a string in cell with location" do
+    worksheet1.write(1,1, "hi!")
+    Crexcel::SharedString.get_strings.size.should eq(4)
+    worksheet1.get_datas.last["type"].should eq("s")
+  end
+
+  it "write a string as an int in cell with location" do
+    worksheet1.write(1,2, "1337", "int")
+    worksheet1.get_datas.last["value"].should eq("1337")
+    worksheet1.get_datas.last["type"].should eq("n")
+  end
+
   workbook.close
 
 end

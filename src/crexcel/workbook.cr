@@ -46,6 +46,13 @@ module Crexcel
       worksheet
     end
 
+    # Call this to add a worksheet to the workbook with a name.
+    #
+    # It returns a Worksheet object
+    # ```
+    # workbook = Workbook.new("thing.xlsx")
+    # first_worksheet = workbook.add_worksheet("test")
+    # ```
     def add_worksheet(name : String)
       worksheet = Worksheet.new(name)
       @sheets << worksheet
@@ -54,7 +61,7 @@ module Crexcel
 
     # This function close the workbook and generate a xlsx file.
     # You **MUST** call this function at the end of you script for each Workbook created.
-    # If you don't, this will not generate the xlsx file.
+    # If you don't, this **WILL NOT** generate the xlsx file.
     # OPTIMIZE: In the future, not closing a Workbook will raise an error
     #  instead of silently not generate the file.
     def close

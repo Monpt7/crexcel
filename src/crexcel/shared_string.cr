@@ -7,9 +7,14 @@ module Crexcel
 
 
     def initialize(string : String)
-      @index = @@strings.size.to_i
-      @@strings << string unless @@strings.includes?(string)
-      @@count += 1
+      unless @@strings.includes?(string)
+        @index = @@strings.size.to_i
+        @@strings << string
+        @@count += 1
+      else
+        ind = @@strings.index(string)
+        @index = ind.nil? ? @@strings.size.to_i : ind
+      end
     end
 
     def self.get_strings
