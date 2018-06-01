@@ -22,7 +22,7 @@ dependencies:
 require "crexcel"
 ```
 
-Docs are comming but it needs features before...
+A very tiny doc is available here : https://monpt7.github.io/crexcel/
 
 ## Contributing
 
