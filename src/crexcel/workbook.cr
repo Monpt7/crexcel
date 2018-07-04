@@ -100,7 +100,6 @@ module Crexcel
           zip.add("[Content_Types].xml", File.open("#{@directory}[Content_Types].xml"))
         end
       end
-      puts "\n\nCreated #{name}"
     end
 
     private def write_workbook_xml
