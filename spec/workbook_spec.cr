@@ -4,7 +4,7 @@ require "../src/crexcel/*"
 describe Crexcel do
   name = "test.xlsx"
   workbook = Crexcel::Workbook.new(name)
-  worksheet1 = workbook.add_worksheet()
+  worksheet1 = workbook.add_worksheet
 
   it "creates a workbook with the correct filename" do
     workbook.name.should eq("test.xlsx")
@@ -55,13 +55,13 @@ describe Crexcel do
   end
 
   it "write a string in cell with location" do
-    worksheet1.write(1,1, "hi!")
+    worksheet1.write(1, 1, "hi!")
     Crexcel::SharedString.get_strings.size.should eq(4)
     worksheet1.get_datas.last["type"].should eq("s")
   end
 
   it "write a string as an int in cell with location" do
-    worksheet1.write(1,2, "1337", "int")
+    worksheet1.write(1, 2, "1337", "int")
     worksheet1.get_datas.last["value"].should eq("1337")
     worksheet1.get_datas.last["type"].should eq("n")
   end
@@ -79,5 +79,4 @@ describe Crexcel do
   end
 
   workbook.close
-
 end

@@ -5,7 +5,6 @@ module Crexcel
     @@count = 0
     getter index : Int32
 
-
     def initialize(string : String)
       unless @@strings.includes?(string)
         @index = @@strings.size.to_i
@@ -31,8 +30,7 @@ module Crexcel
           end
         end
       end
-      File.write(file,string)
+      File.write(file, string)
     end
-
   end
 end

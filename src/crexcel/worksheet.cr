@@ -1,9 +1,8 @@
 require "../helpers/position_helper.cr"
-module Crexcel
 
+module Crexcel
   # TODO Write doc for Worksheet class
   class Worksheet
-
     alias Datum = NamedTuple(pos: String, value: String, type: String)
 
     SUPPORTED_TYPES = {"string" => "s", "int" => "n"}
@@ -24,7 +23,7 @@ module Crexcel
     # first_worksheet = workbook.add_worksheet
     # first_worksheet.write("A1", "Hello world!")
     # first_worksheet.write("A2", "1337") # Will write 1337 as a string
-    # first_worksheet.write("B1", 1337) # Will write 1337 as a number
+    # first_worksheet.write("B1", 1337)   # Will write 1337 as a number
     # ```
     def write(position : String, str : Int32 | Int64 | Float64 | String)
       if str.is_a? String
@@ -92,7 +91,7 @@ module Crexcel
     # ```
     # first_worksheet = workbook.add_worksheet
     # first_worksheet.write(0, 0, "hello") # Will write "hello" in A1 cell
-    # first_worksheet.get("A1") #=> {pos: "A1", value: "hello", type: ""}
+    # first_worksheet.get("A1")            # => {pos: "A1", value: "hello", type: ""}
     # ```
     def get(position : String) : Datum
       get_datas.find { |i| i[:pos] == position } || {pos: position, value: "", type: ""}
@@ -102,7 +101,7 @@ module Crexcel
     # ```
     # first_worksheet = workbook.add_worksheet
     # first_worksheet.write(0, 0, "hello") # Will write "hello" in A1 cell
-    # first_worksheet.get(0, 0) #=> {pos: "A1", value: "hello", type: ""}
+    # first_worksheet.get(0, 0)            # => {pos: "A1", value: "hello", type: ""}
     # ```
     def get(pos_x : Int32 | Int64, pos_y : Int32 | Int64)
       position = int_pos_to_char(pos_x, pos_y)
@@ -117,7 +116,7 @@ module Crexcel
     # :nodoc:
     def get_tidy_datas
       tidy_datas = Hash(Int32, Array(Datum)).new
-      sorted_datas = @datas.sort {|a,b|
+      sorted_datas = @datas.sort { |a, b|
         tmpa = /[A-Z]*([\d]*)/.match(a["pos"])
         tmpb = /[A-Z]*([\d]*)/.match(b["pos"])
         if tmpa.not_nil![1].to_i > tmpb.not_nil![1].to_i
@@ -140,6 +139,5 @@ module Crexcel
       end
       tidy_datas
     end
-
   end
 end
