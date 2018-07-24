@@ -1,16 +1,20 @@
 require "../helpers/position_helper.cr"
 module Crexcel
+
   # TODO Write doc for Worksheet class
   class Worksheet
+
+    alias Datum = NamedTuple(pos: String, value: String, type: String)
+
     SUPPORTED_TYPES = {"string" => "s", "int" => "n"}
-    @datas : Array(NamedTuple(pos: String, value: String, type: String))
+    @datas : Array(Datum)
 
     # Get name of the worksheet
     getter name : String
 
     # :nodoc:
     def initialize(name : String)
-      @datas = Array(NamedTuple(pos: String, value: String, type: String)).new
+      @datas = Array(Datum).new
       @name = name
     end
 
@@ -61,6 +65,50 @@ module Crexcel
       end
     end
 
+    # Will write a row with the provided array of data
+    # ```
+    # first_worksheet = workbook.add_worksheet
+    # first_worksheet.write_row(0, ["hello", "world"]) # Will write "hello" in A1 cell and "world" in A2
+    # ```
+    def write_row(pos_y : Int32 | Int64, data : Array(Int32 | Int64 | Float64 | String))
+      data.each_index do |i|
+        write(i, pos_y, data[i])
+      end
+    end
+
+    # Will write a row with the provided array of data
+    # ```
+    # first_worksheet = workbook.add_worksheet
+    # first_worksheet.write_row("A", ["hello", "world"]) # Will write "hello" in A1 cell and "world" in A2
+    # ```
+    def write_row(row : String, data : Array(Int32 | Int64 | Float64 | String))
+      data.each_index do |i|
+        position = "#{row}#{i + 1}"
+        write(position, data[i])
+      end
+    end
+
+    # Fetch the data at the given string postition
+    # ```
+    # first_worksheet = workbook.add_worksheet
+    # first_worksheet.write(0, 0, "hello") # Will write "hello" in A1 cell
+    # first_worksheet.get("A1") #=> {pos: "A1", value: "hello", type: ""}
+    # ```
+    def get(position : String) : Datum
+      get_datas.find { |i| i[:pos] == position } || {pos: position, value: "", type: ""}
+    end
+
+    # Fetch the data at the given x, y postition
+    # ```
+    # first_worksheet = workbook.add_worksheet
+    # first_worksheet.write(0, 0, "hello") # Will write "hello" in A1 cell
+    # first_worksheet.get(0, 0) #=> {pos: "A1", value: "hello", type: ""}
+    # ```
+    def get(pos_x : Int32 | Int64, pos_y : Int32 | Int64)
+      position = int_pos_to_char(pos_x, pos_y)
+      get_datas.find { |i| i[:pos] == position } || {pos: position, value: "", type: ""}
+    end
+
     # :nodoc:
     def get_datas
       @datas
@@ -68,7 +116,7 @@ module Crexcel
 
     # :nodoc:
     def get_tidy_datas
-      tidy_datas = Hash(Int32, Array(NamedTuple(pos: String, value: String, type: String))).new
+      tidy_datas = Hash(Int32, Array(Datum)).new
       sorted_datas = @datas.sort {|a,b|
         tmpa = /[A-Z]*([\d]*)/.match(a["pos"])
         tmpb = /[A-Z]*([\d]*)/.match(b["pos"])
@@ -87,7 +135,7 @@ module Crexcel
       sorted_datas.each do |data|
         row = /[A-Z]*([\d]*)/.match(data["pos"])
         row = row.not_nil![1].to_i
-        tidy_datas[row] = Array(NamedTuple(pos: String, value: String, type: String)).new unless tidy_datas.has_key?(row)
+        tidy_datas[row] = Array(Datum).new unless tidy_datas.has_key?(row)
         tidy_datas[row] << data
       end
       tidy_datas

@@ -66,6 +66,18 @@ describe Crexcel do
     worksheet1.get_datas.last["type"].should eq("n")
   end
 
+  it "write an array to row via string" do
+    worksheet1.write_row("Z", [123, 321])
+    worksheet1.get("Z1")[:value].should eq("123")
+    worksheet1.get("Z2")[:value].should eq("321")
+  end
+
+  it "write an array to row via int" do
+    worksheet1.write_row(14, [123, 321])
+    worksheet1.get(0, 14)[:value].should eq("123")
+    worksheet1.get(1, 14)[:value].should eq("321")
+  end
+
   workbook.close
 
 end
