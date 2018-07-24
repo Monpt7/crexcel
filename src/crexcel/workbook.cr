@@ -99,7 +99,7 @@ module Crexcel
 
     private def generate_xlsx
       name = @name
-      name = name + ".xslx" if name.split('.')[-1] != "xlsx"
+      name = name + ".xlsx" if name.split('.')[-1] != "xlsx"
       File.open(name, "w") do |file|
         Zip::Writer.open(file) do |zip|
           zip.add("_rels/.rels", File.open(File.join(dirs[:rels], ".rels")))
