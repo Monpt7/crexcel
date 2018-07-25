@@ -95,7 +95,7 @@ module Crexcel
       write_workbook_xml
       write_rels_xml
       generate_xlsx
-      Dir.rmdir(dirs[:root])
+      FileUtils.rm_r(dirs[:root])
     end
 
     private def generate_xlsx
