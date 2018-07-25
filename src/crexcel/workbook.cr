@@ -2,6 +2,7 @@ require "../ext/dir"
 require "zip"
 require "tempfile"
 require "./worksheet"
+require "file_utils"
 
 module Crexcel
   # The Workbook Class is the main class of Crexcel.
