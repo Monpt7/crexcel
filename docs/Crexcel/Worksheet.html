@@ -1,24 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.25.0">
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="../js/doc.js"></script>
+<script type="text/javascript">
+  CrystalDoc.base_path = "../";
+</script>
+
   <meta id="repository-name" content="github.com/Monpt7/crexcel">
-  <link href="../css/style.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript" src="../js/doc.js"></script>
   <title>Crexcel::Worksheet - github.com/Monpt7/crexcel</title>
 </head>
 <body>
 
-<div id="types-list">
-  <div id="search-box">
-    <input type="search" id="search-input" placeholder="Search...">
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false">
+    </div>
+
+    <div class="repository-links">
+      <a href="../index.html">README</a>
+    </div>
   </div>
 
-  <ul>
-    <li><a href="../index.html">README</a></li>
-  </ul>
+  <div class="search-results" class="hidden">
+    <ul class="search-list"></ul>
+  </div>
 
-  <ul>
+  <div class="types-list">
+    <ul>
   
   <li class="parent open current" data-id="github.com/Monpt7/crexcel/Crexcel" data-name="crexcel">
       <a href="../Crexcel.html">Crexcel</a>
@@ -40,11 +56,18 @@
       
     </li>
   
+  <li class=" " data-id="github.com/Monpt7/crexcel/Dir" data-name="dir">
+      <a href="../Dir.html">Dir</a>
+      
+    </li>
+  
 </ul>
 
+  </div>
 </div>
 
-<div id="main-content">
+
+<div class="main-content">
 <h1 class="type-name">
 
   <span class="kind">class</span> Crexcel::Worksheet
@@ -77,7 +100,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/worksheet.cr#L4" target="_blank">crexcel/worksheet.cr</a>
+      <a href="https://github.com/Monpt7/crexcel/blob/9e6e8ac675bc8768dc35d502428c0d2ff10bc397/src/crexcel/worksheet.cr#L5" target="_blank">crexcel/worksheet.cr</a>
     
     <br/>
   
@@ -106,6 +129,20 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
+        <a href="#get%28pos_x%3AInt32%7CInt64%2Cpos_y%3AInt32%7CInt64%29-instance-method" class="signature"><strong>#get</strong>(pos_x : Int32 | Int64, pos_y : Int32 | Int64)</a>
+        
+          <div class="summary"><p>Fetch the data at the given x, y postition <code></code>` first_worksheet = workbook.add_worksheet first_worksheet.write(0, 0, "hello") # Will write "hello" in A1 cell first_worksheet.get(0, 0)            # => {pos: "A1", value: "hello", type: ""} <code></code>`</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#get%28position%3AString%29%3ADatum-instance-method" class="signature"><strong>#get</strong>(position : String) : Datum</a>
+        
+          <div class="summary"><p>Fetch the data at the given string postition <code></code>` first_worksheet = workbook.add_worksheet first_worksheet.write(0, 0, "hello") # Will write "hello" in A1 cell first_worksheet.get("A1")            # => {pos: "A1", value: "hello", type: ""} <code></code>`</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#name%3AString-instance-method" class="signature"><strong>#name</strong> : String</a>
         
           <div class="summary"><p>Get name of the worksheet</p></div>
@@ -130,6 +167,20 @@
         <a href="#write%28position%3AString%2Cstr%3AInt32%7CInt64%7CFloat64%7CString%29-instance-method" class="signature"><strong>#write</strong>(position : String, str : Int32 | Int64 | Float64 | String)</a>
         
           <div class="summary"><p>Write data in the specified worksheet at specific location</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#write_row%28pos_y%3AInt32%7CInt64%2Cdata%3AArray%28Int32%7CInt64%7CFloat64%7CString%29%29-instance-method" class="signature"><strong>#write_row</strong>(pos_y : Int32 | Int64, data : Array(Int32 | Int64 | Float64 | String))</a>
+        
+          <div class="summary"><p>Will write a row with the provided array of data <code></code>` first_worksheet = workbook.add_worksheet first_worksheet.write_row(0, ["hello", "world"]) # Will write "hello" in A1 cell and "world" in A2 <code></code>`</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#write_row%28row%3AString%2Cdata%3AArray%28Int32%7CInt64%7CFloat64%7CString%29%29-instance-method" class="signature"><strong>#write_row</strong>(row : String, data : Array(Int32 | Int64 | Float64 | String))</a>
+        
+          <div class="summary"><p>Will write a row with the provided array of data <code></code>` first_worksheet = workbook.add_worksheet first_worksheet.write_row("A", ["hello", "world"]) # Will write "hello" in A1 cell and "world" in A2 <code></code>`</p></div>
         
       </li>
     
@@ -170,6 +221,50 @@
 
   <h2>Instance Method Detail</h2>
   
+    <div class="entry-detail" id="get(pos_x:Int32|Int64,pos_y:Int32|Int64)-instance-method">
+      <div class="signature">
+        
+        def <strong>get</strong>(pos_x : Int32 | Int64, pos_y : Int32 | Int64)
+
+        <a class="method-permalink" href="#get%28pos_x%3AInt32%7CInt64%2Cpos_y%3AInt32%7CInt64%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Fetch the data at the given x, y postition</p>
+
+<pre><code>first_worksheet <span class="o">=</span> workbook.add_worksheet
+first_worksheet.write(<span class="n">0</span>, <span class="n">0</span>, <span class="s">&quot;hello&quot;</span>) <span class="c"># Will write &quot;hello&quot; in A1 cell</span>
+first_worksheet.get(<span class="n">0</span>, <span class="n">0</span>)            <span class="c"># =&gt; {pos: &quot;A1&quot;, value: &quot;hello&quot;, type: &quot;&quot;}</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Monpt7/crexcel/blob/9e6e8ac675bc8768dc35d502428c0d2ff10bc397/src/crexcel/worksheet.cr#L107" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="get(position:String):Datum-instance-method">
+      <div class="signature">
+        
+        def <strong>get</strong>(position : String) : Datum
+
+        <a class="method-permalink" href="#get%28position%3AString%29%3ADatum-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Fetch the data at the given string postition</p>
+
+<pre><code>first_worksheet <span class="o">=</span> workbook.add_worksheet
+first_worksheet.write(<span class="n">0</span>, <span class="n">0</span>, <span class="s">&quot;hello&quot;</span>) <span class="c"># Will write &quot;hello&quot; in A1 cell</span>
+first_worksheet.get(<span class="s">&quot;A1&quot;</span>)            <span class="c"># =&gt; {pos: &quot;A1&quot;, value: &quot;hello&quot;, type: &quot;&quot;}</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Monpt7/crexcel/blob/9e6e8ac675bc8768dc35d502428c0d2ff10bc397/src/crexcel/worksheet.cr#L97" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="name:String-instance-method">
       <div class="signature">
         
@@ -183,7 +278,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/worksheet.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/Monpt7/crexcel/blob/9e6e8ac675bc8768dc35d502428c0d2ff10bc397/src/crexcel/worksheet.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -207,7 +302,7 @@ first_worksheet.write(<span class="s">&quot;A1&quot;</span>, <span class="s">&qu
       <br/>
       <div>
         
-          [<a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/worksheet.cr#L44" target="_blank">View source</a>]
+          [<a href="https://github.com/Monpt7/crexcel/blob/9e6e8ac675bc8768dc35d502428c0d2ff10bc397/src/crexcel/worksheet.cr#L48" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -228,7 +323,7 @@ first_worksheet.write(<span class="n">0</span>, <span class="n">0</span>, <span 
       <br/>
       <div>
         
-          [<a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/worksheet.cr#L56" target="_blank">View source</a>]
+          [<a href="https://github.com/Monpt7/crexcel/blob/9e6e8ac675bc8768dc35d502428c0d2ff10bc397/src/crexcel/worksheet.cr#L60" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -246,12 +341,54 @@ first_worksheet.write(<span class="n">0</span>, <span class="n">0</span>, <span 
 <pre><code>first_worksheet <span class="o">=</span> workbook.add_worksheet
 first_worksheet.write(<span class="s">&quot;A1&quot;</span>, <span class="s">&quot;Hello world!&quot;</span>)
 first_worksheet.write(<span class="s">&quot;A2&quot;</span>, <span class="s">&quot;1337&quot;</span>) <span class="c"># Will write 1337 as a string</span>
-first_worksheet.write(<span class="s">&quot;B1&quot;</span>, <span class="n">1337</span>) <span class="c"># Will write 1337 as a number</span></code></pre></div>
+first_worksheet.write(<span class="s">&quot;B1&quot;</span>, <span class="n">1337</span>)   <span class="c"># Will write 1337 as a number</span></code></pre></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/worksheet.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/Monpt7/crexcel/blob/9e6e8ac675bc8768dc35d502428c0d2ff10bc397/src/crexcel/worksheet.cr#L29" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="write_row(pos_y:Int32|Int64,data:Array(Int32|Int64|Float64|String))-instance-method">
+      <div class="signature">
+        
+        def <strong>write_row</strong>(pos_y : Int32 | Int64, data : Array(Int32 | Int64 | Float64 | String))
+
+        <a class="method-permalink" href="#write_row%28pos_y%3AInt32%7CInt64%2Cdata%3AArray%28Int32%7CInt64%7CFloat64%7CString%29%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Will write a row with the provided array of data</p>
+
+<pre><code>first_worksheet <span class="o">=</span> workbook.add_worksheet
+first_worksheet.write_row(<span class="n">0</span>, [<span class="s">&quot;hello&quot;</span>, <span class="s">&quot;world&quot;</span>]) <span class="c"># Will write &quot;hello&quot; in A1 cell and &quot;world&quot; in A2</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Monpt7/crexcel/blob/9e6e8ac675bc8768dc35d502428c0d2ff10bc397/src/crexcel/worksheet.cr#L73" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="write_row(row:String,data:Array(Int32|Int64|Float64|String))-instance-method">
+      <div class="signature">
+        
+        def <strong>write_row</strong>(row : String, data : Array(Int32 | Int64 | Float64 | String))
+
+        <a class="method-permalink" href="#write_row%28row%3AString%2Cdata%3AArray%28Int32%7CInt64%7CFloat64%7CString%29%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Will write a row with the provided array of data</p>
+
+<pre><code>first_worksheet <span class="o">=</span> workbook.add_worksheet
+first_worksheet.write_row(<span class="s">&quot;A&quot;</span>, [<span class="s">&quot;hello&quot;</span>, <span class="s">&quot;world&quot;</span>]) <span class="c"># Will write &quot;hello&quot; in A1 cell and &quot;world&quot; in A2</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Monpt7/crexcel/blob/9e6e8ac675bc8768dc35d502428c0d2ff10bc397/src/crexcel/worksheet.cr#L84" target="_blank">View source</a>]
         
       </div>
     </div>
