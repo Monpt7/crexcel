@@ -9,6 +9,7 @@ module Crexcel
   # It create the file which will contains the worksheets.
   # NOTE: Don't forget to call the close method in order to generate your xlsx file!
   class Workbook
+    # :nodoc:
     alias Dirs = NamedTuple(
       root: String,
       xl: String,

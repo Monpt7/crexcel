@@ -4,7 +4,7 @@
 
 crexcel is a crystal library to generate XLSX files almost like this [python module](https://github.com/jmcnamara/XlsxWriter)
 
-**Important note :** this library only works with the master branch of Crystal for the moment. 0.24.2 version doesn't work but I hope 0.24.3 will!
+**Important note :** this library only works with crystal version above 0.25.1
 
 ## Installation
 
@@ -22,7 +22,7 @@ dependencies:
 require "crexcel"
 ```
 
-A very tiny doc is available here : https://monpt7.github.io/crexcel/
+Documentation is available here: https://monpt7.github.io/crexcel/
 
 ## Contributing
 
@@ -35,3 +35,4 @@ A very tiny doc is available here : https://monpt7.github.io/crexcel/
 ## Contributors
 
 - [Monpt7](https://github.com/Monpt7) - creator, maintainer
+- [kalinon](https://github.com/kalinon) - contributor
