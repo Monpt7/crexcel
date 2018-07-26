@@ -1,15 +1,30 @@
+require "../ext/dir"
 require "zip"
+require "tempfile"
+require "./worksheet"
+require "file_utils"
 
 module Crexcel
   # The Workbook Class is the main class of Crexcel.
   # It create the file which will contains the worksheets.
   # NOTE: Don't forget to call the close method in order to generate your xlsx file!
   class Workbook
+    alias Dirs = NamedTuple(
+      root: String,
+      xl: String,
+      rels: String,
+      doc_props: String,
+      xl_rels: String,
+      xl_theme: String,
+      worksheets: String,
+    )
+
     @sheets : Array(Worksheet)
     @directory : String
-    @xldir : String
-    @tmpdir : String
+    @tmpdir : String = Tempfile.dirname
+
     getter name : String
+    getter dirs : Dirs
 
     # The new method let you create a workbook, you only need one per file you want to generate.
     #
@@ -23,12 +38,18 @@ module Crexcel
     def initialize(name : String)
       @sheets = Array(Worksheet).new
       @name = name
-      dirname = Random::Secure.hex(8)
-      @tmpdir = ENV["TMP_DIR"] ||= "/tmp/"
-      @tmpdir = @tmpdir + '/' if @tmpdir[-1] != '/'
       raise "Error: Temporary directory doesn't exist" unless Dir.exists?(@tmpdir)
-      @directory = @tmpdir + dirname + '/'
-      @xldir = @directory + "xl/"
+      @directory = Dir.mktmpdir
+
+      @dirs = {
+        root:       @directory,
+        xl:         File.join(@directory, "xl"),
+        rels:       File.join(@directory, "_rels"),
+        doc_props:  File.join(@directory, "docProps"),
+        xl_rels:    File.join(@directory, "xl", "_rels"),
+        xl_theme:   File.join(@directory, "xl", "theme"),
+        worksheets: File.join(@directory, "xl", "worksheets"),
+      }
     end
 
     # Call this to add a worksheet to the workbook without giving it a name.
@@ -65,39 +86,37 @@ module Crexcel
     # OPTIMIZE: In the future, not closing a Workbook will raise an error
     #  instead of silently not generate the file.
     def close
-      Dir.mkdir(@directory)
-      Dir.mkdir(@directory + "_rels")
-      Dir.mkdir(@directory + "docProps")
-      Dir.mkdir(@xldir)
-      Dir.mkdir(@xldir + "_rels")
-      Dir.mkdir(@xldir + "theme")
-      Dir.mkdir(@xldir + "worksheets")
-      ArchiveBuilder.new(@directory, @sheets.size)
-      SharedString.generate_xml(@xldir + "sharedStrings.xml")
+      dirs.each_value do |val|
+        Dir.mkdir(val) unless Dir.exists?(val)
+      end
+
+      ArchiveBuilder.new(dirs, @sheets.size)
+      SharedString.generate_xml(File.join(dirs[:xl], "sharedStrings.xml"))
       write_worksheets_xml
       write_workbook_xml
       write_rels_xml
       generate_xlsx
+      FileUtils.rm_r(dirs[:root])
     end
 
     private def generate_xlsx
       name = @name
-      name = name + ".xslx" if name.split('.')[-1] != "xlsx"
+      name = name + ".xlsx" if name.split('.')[-1] != "xlsx"
       File.open(name, "w") do |file|
         Zip::Writer.open(file) do |zip|
-          zip.add("_rels/.rels", File.open("#{@directory}_rels/.rels"))
-          zip.add("docProps/app.xml", File.open("#{@directory}docProps/app.xml"))
-          zip.add("docProps/core.xml", File.open("#{@directory}docProps/core.xml"))
-          zip.add("xl/_rels/workbook.xml.rels", File.open("#{@directory}xl/_rels/workbook.xml.rels"))
-          zip.add("xl/theme/theme1.xml", File.open("#{@directory}xl/theme/theme1.xml"))
+          zip.add("_rels/.rels", File.open(File.join(dirs[:rels], ".rels")))
+          zip.add("docProps/app.xml", File.open(File.join(dirs[:doc_props], "app.xml")))
+          zip.add("docProps/core.xml", File.open(File.join(dirs[:doc_props], "core.xml")))
+          zip.add("xl/_rels/workbook.xml.rels", File.open(File.join(dirs[:rels], "workbook.xml.rels")))
+          zip.add("xl/theme/theme1.xml", File.open(File.join(dirs[:xl], "theme", "theme1.xml")))
           @sheets.each_with_index do |sheet, i|
             i += 1
-            zip.add("xl/worksheets/sheet#{i}.xml", File.open("#{@directory}xl/worksheets/sheet#{i}.xml"))
+            zip.add("xl/worksheets/sheet#{i}.xml", File.open(File.join(dirs[:worksheets], "sheet#{i}.xml")))
           end
-          zip.add("xl/sharedStrings.xml", File.open("#{@directory}xl/sharedStrings.xml"))
-          zip.add("xl/styles.xml", File.open("#{@directory}xl/styles.xml"))
-          zip.add("xl/workbook.xml", File.open("#{@directory}xl/workbook.xml"))
-          zip.add("[Content_Types].xml", File.open("#{@directory}[Content_Types].xml"))
+          zip.add("xl/sharedStrings.xml", File.open(File.join(dirs[:xl], "sharedStrings.xml")))
+          zip.add("xl/styles.xml", File.open(File.join(dirs[:xl], "styles.xml")))
+          zip.add("xl/workbook.xml", File.open(File.join(dirs[:xl], "workbook.xml")))
+          zip.add("[Content_Types].xml", File.open(File.join(dirs[:root], "[Content_Types].xml")))
         end
       end
     end
@@ -120,7 +139,7 @@ module Crexcel
           xml.element("calcPr", calcId: "124519", fullCalcOnLoad: "1")
         end
       end
-      File.write(@xldir + "workbook.xml", string)
+      File.write(File.join(dirs[:xl], "workbook.xml"), string)
     end
 
     private def write_worksheets_xml
@@ -155,7 +174,7 @@ module Crexcel
             xml.element("pageMargins", left: "0.7", right: "0.7", top: "0.75", bottom: "0.75", header: "0.3", footer: "0.3")
           end
         end
-        File.write(@xldir + "worksheets/sheet#{i}.xml", string)
+        File.write(File.join(dirs[:worksheets], "sheet#{i}.xml"), string)
       end
     end
 
@@ -173,7 +192,7 @@ module Crexcel
           xml.element("Relationship", "Id": "rId#{r_id + 2}", "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/sharedStrings", "Target": "sharedStrings.xml")
         end
       end
-      File.write(@xldir + "_rels/workbook.xml.rels", string)
+      File.write(File.join(dirs[:rels], "workbook.xml.rels"), string)
     end
   end
 end
