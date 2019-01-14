@@ -1,6 +1,5 @@
 require "../ext/dir"
 require "zip"
-require "tempfile"
 require "./worksheet"
 require "file_utils"
 
@@ -21,7 +20,7 @@ module Crexcel
 
     @sheets : Array(Worksheet)
     @directory : String
-    @tmpdir : String = Tempfile.dirname
+    @tmpdir : String = Dir.tempdir
 
     getter name : String
     getter dirs : Dirs

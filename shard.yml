@@ -4,6 +4,6 @@ version: 0.1.1
 authors:
   - Monpt7 <viallo_l@etna-alternance.net>
 
-crystal: 0.25.1
+crystal: 0.27.0
 
 license: MIT
