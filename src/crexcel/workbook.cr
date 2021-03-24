@@ -1,6 +1,5 @@
 require "../ext/dir"
-require "zip"
-require "tempfile"
+require "compress/zip"
 require "./worksheet"
 require "file_utils"
 
@@ -9,7 +8,6 @@ module Crexcel
   # It create the file which will contains the worksheets.
   # NOTE: Don't forget to call the close method in order to generate your xlsx file!
   class Workbook
-    # :nodoc:
     alias Dirs = NamedTuple(
       root: String,
       xl: String,
@@ -22,7 +20,7 @@ module Crexcel
 
     @sheets : Array(Worksheet)
     @directory : String
-    @tmpdir : String = Tempfile.dirname
+    @tmpdir : String = Dir.tempdir
 
     getter name : String
     getter dirs : Dirs
@@ -104,7 +102,7 @@ module Crexcel
       name = @name
       name = name + ".xlsx" if name.split('.')[-1] != "xlsx"
       File.open(name, "w") do |file|
-        Zip::Writer.open(file) do |zip|
+        Compress::Zip::Writer.open(file) do |zip|
           zip.add("_rels/.rels", File.open(File.join(dirs[:rels], ".rels")))
           zip.add("docProps/app.xml", File.open(File.join(dirs[:doc_props], "app.xml")))
           zip.add("docProps/core.xml", File.open(File.join(dirs[:doc_props], "core.xml")))
