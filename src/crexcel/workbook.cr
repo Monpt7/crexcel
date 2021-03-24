@@ -1,5 +1,5 @@
 require "../ext/dir"
-require "zip"
+require "compress/zip"
 require "./worksheet"
 require "file_utils"
 
@@ -102,7 +102,7 @@ module Crexcel
       name = @name
       name = name + ".xlsx" if name.split('.')[-1] != "xlsx"
       File.open(name, "w") do |file|
-        Zip::Writer.open(file) do |zip|
+        Compress::Zip::Writer.open(file) do |zip|
           zip.add("_rels/.rels", File.open(File.join(dirs[:rels], ".rels")))
           zip.add("docProps/app.xml", File.open(File.join(dirs[:doc_props], "app.xml")))
           zip.add("docProps/core.xml", File.open(File.join(dirs[:doc_props], "core.xml")))
