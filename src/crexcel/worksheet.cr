@@ -3,7 +3,6 @@ require "../helpers/position_helper.cr"
 module Crexcel
   # TODO Write doc for Worksheet class
   class Worksheet
-    # :nodoc:
     alias Datum = NamedTuple(pos: String, value: String, type: String)
 
     SUPPORTED_TYPES = {"string" => "s", "int" => "n"}
