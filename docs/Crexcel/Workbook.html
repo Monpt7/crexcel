@@ -1,24 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.25.0">
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="../js/doc.js"></script>
+<script type="text/javascript">
+  CrystalDoc.base_path = "../";
+</script>
+
   <meta id="repository-name" content="github.com/Monpt7/crexcel">
-  <link href="../css/style.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript" src="../js/doc.js"></script>
   <title>Crexcel::Workbook - github.com/Monpt7/crexcel</title>
 </head>
 <body>
 
-<div id="types-list">
-  <div id="search-box">
-    <input type="search" id="search-input" placeholder="Search...">
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false">
+    </div>
+
+    <div class="repository-links">
+      <a href="../index.html">README</a>
+    </div>
   </div>
 
-  <ul>
-    <li><a href="../index.html">README</a></li>
-  </ul>
+  <div class="search-results" class="hidden">
+    <ul class="search-list"></ul>
+  </div>
 
-  <ul>
+  <div class="types-list">
+    <ul>
   
   <li class="parent open current" data-id="github.com/Monpt7/crexcel/Crexcel" data-name="crexcel">
       <a href="../Crexcel.html">Crexcel</a>
@@ -40,11 +56,18 @@
       
     </li>
   
+  <li class=" " data-id="github.com/Monpt7/crexcel/Dir" data-name="dir">
+      <a href="../Dir.html">Dir</a>
+      
+    </li>
+  
 </ul>
 
+  </div>
 </div>
 
-<div id="main-content">
+
+<div class="main-content">
 <h1 class="type-name">
 
   <span class="kind">class</span> Crexcel::Workbook
@@ -80,7 +103,7 @@ It create the file which will contains the worksheets.</p>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/workbook.cr#L7" target="_blank">crexcel/workbook.cr</a>
+      <a href="https://github.com/Monpt7/crexcel/blob/9e6e8ac675bc8768dc35d502428c0d2ff10bc397/src/crexcel/workbook.cr#L11" target="_blank">crexcel/workbook.cr</a>
     
     <br/>
   
@@ -126,6 +149,11 @@ It create the file which will contains the worksheets.</p>
         <a href="#close-instance-method" class="signature"><strong>#close</strong></a>
         
           <div class="summary"><p>This function close the workbook and generate a xlsx file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dirs%3ADirs-instance-method" class="signature"><strong>#dirs</strong> : Dirs</a>
         
       </li>
     
@@ -187,7 +215,7 @@ It create the file which will contains the worksheets.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/workbook.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/Monpt7/crexcel/blob/9e6e8ac675bc8768dc35d502428c0d2ff10bc397/src/crexcel/workbook.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -217,7 +245,7 @@ first_worksheet <span class="o">=</span> workbook.add_worksheet(<span class="s">
       <br/>
       <div>
         
-          [<a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/workbook.cr#L56" target="_blank">View source</a>]
+          [<a href="https://github.com/Monpt7/crexcel/blob/9e6e8ac675bc8768dc35d502428c0d2ff10bc397/src/crexcel/workbook.cr#L78" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -240,7 +268,7 @@ first_worksheet <span class="o">=</span> workbook.add_worksheet</code></pre></di
       <br/>
       <div>
         
-          [<a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/workbook.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/Monpt7/crexcel/blob/9e6e8ac675bc8768dc35d502428c0d2ff10bc397/src/crexcel/workbook.cr#L63" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -263,7 +291,23 @@ If you don't, this <strong>WILL NOT</strong> generate the xlsx file.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/workbook.cr#L67" target="_blank">View source</a>]
+          [<a href="https://github.com/Monpt7/crexcel/blob/9e6e8ac675bc8768dc35d502428c0d2ff10bc397/src/crexcel/workbook.cr#L89" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dirs:Dirs-instance-method">
+      <div class="signature">
+        
+        def <strong>dirs</strong> : Dirs
+
+        <a class="method-permalink" href="#dirs%3ADirs-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Monpt7/crexcel/blob/9e6e8ac675bc8768dc35d502428c0d2ff10bc397/src/crexcel/workbook.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -279,7 +323,7 @@ If you don't, this <strong>WILL NOT</strong> generate the xlsx file.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Monpt7/crexcel/blob/3b9172b4eeb2ccd56654e35f032e194a64bcbaae/src/crexcel/workbook.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/Monpt7/crexcel/blob/9e6e8ac675bc8768dc35d502428c0d2ff10bc397/src/crexcel/workbook.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
